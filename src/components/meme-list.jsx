@@ -2,10 +2,10 @@ import React from "react";
 import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Image } from "@heroui/react";
 
-import { getMemes } from "../utils/meme-storage.js";
+import { useMemes } from "../hooks/useMemes";
 
 const MemeList = () => {
-  const memes = getMemes();
+  const { memes } = useMemes();
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">

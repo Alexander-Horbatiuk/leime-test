@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Table,
@@ -14,8 +14,18 @@ import { getMemes } from "../utils/meme-storage.js";
 import MemeEditModal from "./meme-edit-modal.jsx";
 
 const MemeTable = () => {
-  const [memes, setMemes] = useState(getMemes());
+  const [memes, setMemes] = useState([]);
   const [selectedMeme, setSelectedMeme] = useState(null);
+
+  useEffect(() => {
+    setMemes(getMemes());
+  }, []);
+
+  const handleUpdate = () => {
+    const updatedMemes = getMemes();
+
+    setMemes([...updatedMemes]);
+  };
 
   const handleEdit = (meme) => {
     setSelectedMeme(meme);
@@ -23,17 +33,17 @@ const MemeTable = () => {
 
   const handleClose = () => {
     setSelectedMeme(null);
-    setMemes(getMemes());
+    handleUpdate();
   };
 
   return (
     <>
-      <Table aria-label="Список мемов">
+      <Table aria-label="Список мемів">
         <TableHeader>
           <TableColumn>ID</TableColumn>
           <TableColumn>Назва</TableColumn>
           <TableColumn>Кількість лайків</TableColumn>
-          <TableColumn>Actions</TableColumn>
+          <TableColumn>Дії</TableColumn>
         </TableHeader>
         <TableBody>
           {memes.map((meme) => (
@@ -47,7 +57,7 @@ const MemeTable = () => {
                   radius="full"
                   onPress={() => handleEdit(meme)}
                 >
-                  Edit
+                  редагувати
                 </Button>
               </TableCell>
             </TableRow>

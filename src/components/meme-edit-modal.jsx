@@ -26,8 +26,8 @@ const MemeEditModal = ({ meme, onClose }) => {
       errs.name = "Назва має бути від 3 до 100 символів";
     }
 
-    if (!/^https?:\/\/.+\.jpg$/i.test(image)) {
-      errs.image = "Картинка має бути валідним JPG URL";
+    if (!/^https?:\/\/.+\.(jpg|jpeg|png|gif|webp)(\?.*)?$/i.test(image)) {
+      errs.image = "Картинка має бути валідним зображенням (jpg, png, gif, webp)";
     }
 
     const likesNum = Number(likes);

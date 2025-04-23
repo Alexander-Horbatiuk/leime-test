@@ -1,11 +1,9 @@
-import { defaultMemes } from "../memes.js";
-
 const STORAGE_KEY = "memes";
 
 export const getMemes = () => {
   const data = localStorage.getItem(STORAGE_KEY);
 
-  return data ? JSON.parse(data) : defaultMemes;
+  return data ? JSON.parse(data) : [];
 };
 
 export const saveMemes = (memes) => {
