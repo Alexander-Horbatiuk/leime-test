@@ -1,11 +1,19 @@
 import React from "react";
 import { Card, CardBody, CardHeader } from "@heroui/card";
-import { Image } from "@heroui/react";
+import { Image, Spinner } from "@heroui/react";
 
 import { useMemes } from "../hooks/useMemes";
 
 const MemeList = () => {
-  const { memes } = useMemes();
+  const { memes, loading } = useMemes();
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <Spinner label="Завантаження мемів..." size="lg" />
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">

@@ -34,6 +34,7 @@ const MemeTable = () => {
   const handleClose = () => {
     setSelectedMeme(null);
     handleUpdate();
+    window.location.reload();
   };
 
   return (
